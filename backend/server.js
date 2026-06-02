@@ -7,14 +7,25 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
 require("dotenv").config();
+const express = require('express');
+const cors = require('cors'); // Keep this one at the top!
+const mongoose = require('mongoose'); // (or whatever your other imports are)
 
-const cors = require('cors');
+const app = express();
+
+// Just use the variable here without declaring it with 'const' again
 app.use(cors({
-  origin: ['https://share-easyfrontend.vercel.app', 'http://localhost:5173'],
+  origin: [
+    'https://share-easyfrontend.vercel.app', 
+    'http://localhost:5173'
+  ],
   methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true
 }));
 
+app.use(express.json());
+// ... rest of your routes and server configuration
 const fileRoutes = require("./routes/fileRoutes");
 
 const app = express();
