@@ -9,7 +9,7 @@ function FileUpload({ onUploadSuccess }) {
 
   // Dynamic API URL: Uses your cloud environment variable if it exists, otherwise falls back to local host
   // Dynamic API URL: Tries Vercel variables first, then falls back directly to your live Render backend
-const API_BASE_URL = import.meta.env.VITE_API_URL || "https://shareeasy-backend-2tk9.onrender.com";
+  const API_BASE_URL = import.meta.env.VITE_API_URL || "https://shareeasy-backend-2tk9.onrender.com";
 
   const handleFileChange = (e) => {
     if (e.target.files && e.target.files[0]) {
