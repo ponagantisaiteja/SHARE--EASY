@@ -1,4 +1,4 @@
-// 1. FORCE NODE.JS TO USE PUBLIC DNS (This fixes the querySrv ECONNREFUSED bug on Windows)
+// 1. FORCE NODE.JS TO USE PUBLIC DNS (Fixes querySrv ECONNREFUSED on Windows)
 const dns = require("node:dns");
 dns.setServers(["8.8.8.8", "1.1.1.1"]); 
 
@@ -7,13 +7,13 @@ const mongoose = require("mongoose");
 const cors = require("cors");
 const path = require("path");
 require("dotenv").config();
-const express = require('express');
-const cors = require('cors'); // Keep this one at the top!
-const mongoose = require('mongoose'); // (or whatever your other imports are)
+
+const fileRoutes = require("./routes/fileRoutes");
 
 const app = express();
+const PORT = process.env.PORT || 5000;
 
-// Just use the variable here without declaring it with 'const' again
+// 2. Unified Middleware Configurations (Combines both Vercel & Localhost)
 app.use(cors({
   origin: [
     'https://share-easyfrontend.vercel.app', 
@@ -24,19 +24,6 @@ app.use(cors({
   credentials: true
 }));
 
-app.use(express.json());
-// ... rest of your routes and server configuration
-const fileRoutes = require("./routes/fileRoutes");
-
-const app = express();
-const PORT = process.env.PORT || 5000;
-
-// 2. Middleware Configurations
-app.use(cors({
-  origin: "http://localhost:5173", // Points to your default Vite frontend port
-  methods: ["GET", "POST"],
-  credentials: true
-}));
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
@@ -67,7 +54,7 @@ mongoose.connect(MONGO_URI, {
   console.log("✅ MongoDB Database Connected Successfully!");
   // Start listening only after a successful database handshake
   app.listen(PORT, () => {
-    console.log(`🚀 ShareEasy Backend running on: http://localhost:${PORT}`);
+    console.log(`🚀 ShareEasy Backend running on port: ${PORT}`);
   });
 })
 .catch((error) => {
