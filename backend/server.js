@@ -8,6 +8,13 @@ const cors = require("cors");
 const path = require("path");
 require("dotenv").config();
 
+const cors = require('cors');
+app.use(cors({
+  origin: ['https://share-easyfrontend.vercel.app', 'http://localhost:5173'],
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  credentials: true
+}));
+
 const fileRoutes = require("./routes/fileRoutes");
 
 const app = express();
