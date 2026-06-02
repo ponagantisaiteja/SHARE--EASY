@@ -13,6 +13,19 @@ if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
 }
 
+
+// Inside your routes/fileRoutes.js:
+const express = require("express");
+const router = express.Router();
+
+// Use just "/upload" here! Because app.use("/api", fileRoutes) automatically sets the prefix.
+router.post("/upload", upload.single("file"), (req, res) => {
+    // Your upload controller logic...
+});
+
+module.exports = router;
+
+
 // Multer Storage Configuration
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {

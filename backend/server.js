@@ -13,7 +13,7 @@ const fileRoutes = require("./routes/fileRoutes");
 const app = express();
 const PORT = process.env.PORT || 5000;
 
-// 2. Unified Middleware Configurations (Combines both Vercel & Localhost)
+// 2. Unified CORS Configuration (Allows both Vercel production and local Vite)
 app.use(cors({
   origin: [
     'https://share-easyfrontend.vercel.app', 
@@ -31,6 +31,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use("/files", express.static(path.join(__dirname, "uploads")));
 
 // 3. Application Routes
+// This flags all routes inside fileRoutes with a "/api" prefix
 app.use("/api", fileRoutes);
 
 // Simple Health Check Home Route
@@ -52,7 +53,6 @@ mongoose.connect(MONGO_URI, {
 })
 .then(() => {
   console.log("✅ MongoDB Database Connected Successfully!");
-  // Start listening only after a successful database handshake
   app.listen(PORT, () => {
     console.log(`🚀 ShareEasy Backend running on port: ${PORT}`);
   });

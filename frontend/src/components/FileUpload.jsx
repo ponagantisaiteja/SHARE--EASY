@@ -7,6 +7,9 @@ function FileUpload({ onUploadSuccess }) {
   const [dragActive, setDragActive] = useState(false);
   const fileInputRef = useRef(null);
 
+  // Dynamic API URL: Uses your cloud environment variable if it exists, otherwise falls back to local host
+  const API_BASE_URL = import.meta.env.VITE_API_URL || "http://localhost:5000";
+
   const handleFileChange = (e) => {
     if (e.target.files && e.target.files[0]) {
       setFile(e.target.files[0]);
@@ -48,8 +51,8 @@ function FileUpload({ onUploadSuccess }) {
     formData.append("file", file);
 
     try {
-      // Connects directly to your local backend API port
-      const response = await fetch("http://localhost:5000/api/upload", {
+      // Correctly targets the combined URL: e.g., https://your-backend.com/api/upload
+      const response = await fetch(`${API_BASE_URL}/api/upload`, {
         method: "POST",
         body: formData,
       });
@@ -57,14 +60,14 @@ function FileUpload({ onUploadSuccess }) {
       const data = await response.json();
 
       if (response.ok && data.success) {
-        onUploadSuccess(data.file); // Pass the uploaded file object back to Home.jsx
-        setFile(null); // Reset the local file input field
+        onUploadSuccess(data.file); // Send uploaded file tracking back to parent (Home.jsx)
+        setFile(null); // Clear input
       } else {
         setError(data.error || "Something went wrong during upload.");
       }
     } catch (err) {
       console.error("Upload error:", err);
-      setError("Unable to reach backend server. Ensure 'npm start' is running on port 5000.");
+      setError("Unable to reach backend server. Cloud instance may be sleeping (cold start). Please try again.");
     } finally {
       setUploading(false);
     }
@@ -137,4 +140,4 @@ function FileUpload({ onUploadSuccess }) {
   );
 }
 
-export default FileUpload; 
+export default FileUpload;
