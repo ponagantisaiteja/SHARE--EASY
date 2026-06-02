@@ -12,7 +12,8 @@ const fileRoutes = require("./routes/fileRoutes");
 
 const app = express();
 // Render assigns a dynamic port via process.env.PORT automatically
-const PORT = process.env.PORT || 5000;
+// const PORT = process.env.PORT || 5000;
+const API_BASE_URL = import.meta.env.VITE_API_URL || "https://shareeasy-backend-2tk9.onrender.com";
 
 // 2. Unified CORS Middleware Settings
 app.use(cors({
