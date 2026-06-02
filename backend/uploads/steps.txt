@@ -1,0 +1,286 @@
+user@unknown5:~$ docker
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Common Commands:
+  run         Create and run a new container from an image
+  exec        Execute a command in a running container
+  ps          List containers
+  build       Build an image from a Dockerfile
+  pull        Download an image from a registry
+  push        Upload an image to a registry
+  images      List images
+  login       Authenticate to a registry
+  logout      Log out from a registry
+  search      Search Docker Hub for images
+  version     Show the Docker version information
+  info        Display system-wide information
+
+Management Commands:
+  builder     Manage builds
+  buildx*     Docker Buildx
+  checkpoint  Manage checkpoints
+  compose*    Docker Compose
+  container   Manage containers
+  context     Manage contexts
+  image       Manage images
+  manifest    Manage Docker image manifests and manifest lists
+  network     Manage networks
+  plugin      Manage plugins
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Swarm Commands:
+  config      Manage Swarm configs
+  node        Manage Swarm nodes
+  secret      Manage Swarm secrets
+  service     Manage Swarm services
+  stack       Manage Swarm stacks
+  swarm       Manage Swarm
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  import      Import the contents from a tarball to create a filesystem image
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  wait        Block until one or more containers stop, then print their exit codes
+
+Global Options:
+      --config string      Location of client config files (default
+                           "/home/user/.docker")
+  -c, --context string     Name of the context to use to connect to the
+                           daemon (overrides DOCKER_HOST env var and
+                           default context set with "docker context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket to connect to
+  -l, --log-level string   Set the logging level ("debug", "info",
+                           "warn", "error", "fatal") (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default
+                           "/home/user/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default
+                           "/home/user/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default
+                           "/home/user/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Run 'docker COMMAND --help' for more information on a command.
+
+For more help on how to use Docker, head to https://docs.docker.com/go/guides/
+user@unknown5:~$ docker -v
+Docker version 28.0.4, build b8034c0
+user@unknown5:~$ mkdir Demo
+user@unknown5:~$ cd Desktop
+user@unknown5:~/Desktop$ mkdir Demo
+user@unknown5:~/Desktop$ cd Demo
+user@unknown5:~/Desktop/Demo$ server.py
+server.py: command not found
+user@unknown5:~/Desktop/Demo$ gedit requirements.txt
+user@unknown5:~/Desktop/Demo$ gedit Dockerfile
+user@unknown5:~/Desktop/Demo$ docker build -t flask-app .
+ERROR: permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Head "http://%2Fvar%2Frun%2Fdocker.sock/_ping": dial unix /var/run/docker.sock: connect: permission denied
+user@unknown5:~/Desktop/Demo$ sudo docker build -t flask-app .
+[sudo] password for user: 
+[+] Building 228.1s (9/9) FINISHED                                                        docker:default
+ => [internal] load build definition from Dockerfile                                                0.0s
+ => => transferring dockerfile: 152B                                                                0.0s
+ => [internal] load metadata for docker.io/library/python:3.9                                       6.2s
+ => [internal] load .dockerignore                                                                   0.0s
+ => => transferring context: 2B                                                                     0.0s
+ => [1/4] FROM docker.io/library/python:3.9@sha256:bc2e05bca883473050fc3b7c134c28ab822be73126ba1  213.0s
+ => => resolve docker.io/library/python:3.9@sha256:bc2e05bca883473050fc3b7c134c28ab822be73126ba1ce  0.0s
+ => => sha256:091eb8249475f42de217265c501e0186f0a3ea7490ef7f51458c30db91fb3cac 24.01MB / 24.01MB   49.6s
+ => => sha256:255774e0027b72d2327719e78dbad5ad8c9cf446d055e45be7fc149418470bae 64.40MB / 64.40MB   70.2s
+ => => sha256:bc2e05bca883473050fc3b7c134c28ab822be73126ba1ce29517d9e8b7f3703b 10.35kB / 10.35kB    0.0s
+ => => sha256:3db46eeb095dbddf83794896233f9ed627746b394587600bf4e8e4c68303a915 2.32kB / 2.32kB      0.0s
+ => => sha256:859d4a0f1fd8b03e685b4f3b6f0abfeeb84cca3047f9b87d0a8c8f3c90764365 6.17kB / 6.17kB      0.0s
+ => => sha256:7cd785773db44407e20a679ce5439222e505475eed5b99f1910eb2cda51729ab 48.47MB / 48.47MB   25.6s
+ => => sha256:353e14e5cc47664fba714a7da288001d90427c705494847ac773f5cc081994 211.35MB / 211.35MB  204.8s
+ => => extracting sha256:7cd785773db44407e20a679ce5439222e505475eed5b99f1910eb2cda51729ab           2.1s
+ => => extracting sha256:091eb8249475f42de217265c501e0186f0a3ea7490ef7f51458c30db91fb3cac           0.6s
+ => => sha256:f6d72b00ae7cbea513baa839d4f1bcebb51c434df9602410dfd34bc71e233c8e 6.16MB / 6.16MB     56.1s
+ => => sha256:6e02a90e58aec58d3d8f4549cb6a82a2ccc1db075b8a26a48fe1d0f065b52d86 19.85MB / 19.85MB   70.3s
+ => => extracting sha256:255774e0027b72d2327719e78dbad5ad8c9cf446d055e45be7fc149418470bae           2.5s
+ => => sha256:f299e06712452fd49405fe52fb66dc0bbdd14cc8d8342baa8b2741df89dd465d 250B / 250B         72.4s
+ => => extracting sha256:353e14e5cc47664fba714a7da288001d90427c705494847ac773f5cc08199451           6.8s
+ => => extracting sha256:f6d72b00ae7cbea513baa839d4f1bcebb51c434df9602410dfd34bc71e233c8e           0.3s
+ => => extracting sha256:6e02a90e58aec58d3d8f4549cb6a82a2ccc1db075b8a26a48fe1d0f065b52d86           0.8s
+ => => extracting sha256:f299e06712452fd49405fe52fb66dc0bbdd14cc8d8342baa8b2741df89dd465d           0.0s
+ => [internal] load build context                                                                   0.0s
+ => => transferring context: 426B                                                                   0.0s
+ => [2/4] WORKDIR /app                                                                              0.2s
+ => [3/4] COPY . /app                                                                               0.0s
+ => [4/4] RUN pip install -r requirements.txt                                                       8.4s
+ => exporting to image                                                                              0.2s 
+ => => exporting layers                                                                             0.2s 
+ => => writing image sha256:ed8f38d243de584759e72064676abf2d25fab399f41fa9ed047b586fc756727f        0.0s 
+ => => naming to docker.io/library/flask-app                                                        0.0s 
+user@unknown5:~/Desktop/Demo$ sudo docker run -p 5000:5000 flask-app                                     
+python: can't open file '/app/app.py': [Errno 2] No such file or directory                               
+user@unknown5:~/Desktop/Demo$ sudo docker run -p 5000:5000 flask-app
+python: can't open file '/app/app.py': [Errno 2] No such file or directory
+user@unknown5:~/Desktop/Demo$ cd ..
+user@unknown5:~/Desktop$ cd Demo
+user@unknown5:~/Desktop/Demo$ sudo docker run -p 5000:5000 flask-app
+python: can't open file '/app/app.py': [Errno 2] No such file or directory
+user@unknown5:~/Desktop/Demo$ ls
+app.py  Dockerfile  requirements.txt
+user@unknown5:~/Desktop/Demo$ sudo docker build -t flask-app .
+[+] Building 13.6s (9/9) FINISHED                                                         docker:default
+ => [internal] load build definition from Dockerfile                                                0.0s
+ => => transferring dockerfile: 371B                                                                0.0s
+ => [internal] load metadata for docker.io/library/python:3.9                                       5.5s
+ => [internal] load .dockerignore                                                                   0.0s
+ => => transferring context: 2B                                                                     0.0s
+ => [1/4] FROM docker.io/library/python:3.9@sha256:bc2e05bca883473050fc3b7c134c28ab822be73126ba1ce  0.0s
+ => [internal] load build context                                                                   0.0s
+ => => transferring context: 625B                                                                   0.0s
+ => CACHED [2/4] WORKDIR /app                                                                       0.0s
+ => [3/4] COPY . .                                                                                  0.0s
+ => [4/4] RUN pip install -r requirements.txt                                                       7.8s
+ => exporting to image                                                                              0.2s 
+ => => exporting layers                                                                             0.2s 
+ => => writing image sha256:05dd51a6806a43fd2c20f7328406ac0e40b61df5999169aa49fbfb5213d9ce7b        0.0s 
+ => => naming to docker.io/library/flask-app                                                        0.0s 
+user@unknown5:~/Desktop/Demo$ sudo docker run -p 5000:5000 flask-app                                     
+ * Serving Flask app 'app'                                                                               
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.17.0.2:5000
+Press CTRL+C to quit
+172.17.0.1 - - [03/Apr/2025 09:35:19] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [03/Apr/2025 09:35:19] "GET /favicon.ico HTTP/1.1" 404 -
+172.17.0.1 - - [03/Apr/2025 09:36:00] "GET / HTTP/1.1" 200 -
+172.17.0.1 - - [03/Apr/2025 09:36:00] "GET /favicon.ico HTTP/1.1" 404 -
+^Cuser@unknown5:~/Desktop/Demodocker   ps
+Usage:  docker [OPTIONS] COMMAND
+
+A self-sufficient runtime for containers
+
+Common Commands:
+  run         Create and run a new container from an image
+  exec        Execute a command in a running container
+  ps          List containers
+  build       Build an image from a Dockerfile
+  pull        Download an image from a registry
+  push        Upload an image to a registry
+  images      List images
+  login       Authenticate to a registry
+  logout      Log out from a registry
+  search      Search Docker Hub for images
+  version     Show the Docker version information
+  info        Display system-wide information
+
+Management Commands:
+  builder     Manage builds
+  buildx*     Docker Buildx
+  checkpoint  Manage checkpoints
+  compose*    Docker Compose
+  container   Manage containers
+  context     Manage contexts
+  image       Manage images
+  manifest    Manage Docker image manifests and manifest lists
+  network     Manage networks
+  plugin      Manage plugins
+  system      Manage Docker
+  trust       Manage trust on Docker images
+  volume      Manage volumes
+
+Swarm Commands:
+  config      Manage Swarm configs
+  node        Manage Swarm nodes
+  secret      Manage Swarm secrets
+  service     Manage Swarm services
+  stack       Manage Swarm stacks
+  swarm       Manage Swarm
+
+Commands:
+  attach      Attach local standard input, output, and error streams to a running container
+  commit      Create a new image from a container's changes
+  cp          Copy files/folders between a container and the local filesystem
+  create      Create a new container
+  diff        Inspect changes to files or directories on a container's filesystem
+  events      Get real time events from the server
+  export      Export a container's filesystem as a tar archive
+  history     Show the history of an image
+  import      Import the contents from a tarball to create a filesystem image
+  inspect     Return low-level information on Docker objects
+  kill        Kill one or more running containers
+  load        Load an image from a tar archive or STDIN
+  logs        Fetch the logs of a container
+  pause       Pause all processes within one or more containers
+  port        List port mappings or a specific mapping for the container
+  rename      Rename a container
+  restart     Restart one or more containers
+  rm          Remove one or more containers
+  rmi         Remove one or more images
+  save        Save one or more images to a tar archive (streamed to STDOUT by default)
+  start       Start one or more stopped containers
+  stats       Display a live stream of container(s) resource usage statistics
+  stop        Stop one or more running containers
+  tag         Create a tag TARGET_IMAGE that refers to SOURCE_IMAGE
+  top         Display the running processes of a container
+  unpause     Unpause all processes within one or more containers
+  update      Update configuration of one or more containers
+  wait        Block until one or more containers stop, then print their exit codes
+
+Global Options:
+      --config string      Location of client config files (default "/home/user/.docker")
+  -c, --context string     Name of the context to use to connect to the daemon (overrides
+                           DOCKER_HOST env var and default context set with "docker context use")
+  -D, --debug              Enable debug mode
+  -H, --host list          Daemon socket to connect to
+  -l, --log-level string   Set the logging level ("debug", "info", "warn", "error", "fatal")
+                           (default "info")
+      --tls                Use TLS; implied by --tlsverify
+      --tlscacert string   Trust certs signed only by this CA (default "/home/user/.docker/ca.pem")
+      --tlscert string     Path to TLS certificate file (default "/home/user/.docker/cert.pem")
+      --tlskey string      Path to TLS key file (default "/home/user/.docker/key.pem")
+      --tlsverify          Use TLS and verify the remote
+  -v, --version            Print version information and quit
+
+Run 'docker COMMAND --help' for more information on a command.
+
+For more help on how to use Docker, head to https://docs.docker.com/go/guides/
+user@unknown5:~/Desktop/Demo$ docker ps
+permission denied while trying to connect to the Docker daemon socket at unix:///var/run/docker.sock: Get "http://%2Fvar%2Frun%2Fdocker.sock/v1.48/containers/json": dial unix /var/run/docker.sock: connect: permission denied
+user@unknown5:~/Desktop/Demo$ sudo docker run -p 5000:5000 flask-app
+[sudo] password for user: 
+ * Serving Flask app 'app'
+ * Debug mode: off
+WARNING: This is a development server. Do not use it in a production deployment. Use a production WSGI server instead.
+ * Running on all addresses (0.0.0.0)
+ * Running on http://127.0.0.1:5000
+ * Running on http://172.17.0.2:5000
+Press CTRL+C to quit
+docker ps
+
+

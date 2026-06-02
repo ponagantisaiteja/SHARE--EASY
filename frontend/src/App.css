@@ -1,0 +1,20 @@
+.container {
+  text-align: center;
+  margin-top: 50px;
+}
+button {
+  margin-top: 10px;
+  padding: 10px 20px;
+  background: #007bff;
+  color: white; 
+  border: none;
+  cursor: pointer;
+}
+button:hover {
+  background: #0056b3;
+}
+img {
+  margin-top: 10px;
+  width: 150px;
+  height: 150px;
+}
