@@ -3,30 +3,17 @@ const multer = require("multer");
 const path = require("path");
 const QRCode = require("qrcode");
 const fs = require("fs");
-const File = require("../models/File"); // Adjusted to match lowercase filename 'file.js'
+const File = require("../models/File"); // Verified lowercase filename 'file.js'
 
 const router = express.Router();
 
-// Ensure uploads directory exists cleanly
+// 1. Ensure uploads directory exists cleanly
 const uploadsDir = path.join(__dirname, "..", "uploads");
 if (!fs.existsSync(uploadsDir)) {
   fs.mkdirSync(uploadsDir, { recursive: true });
 }
 
-
-// Inside your routes/fileRoutes.js:
-const express = require("express");
-const router = express.Router();
-
-// Use just "/upload" here! Because app.use("/api", fileRoutes) automatically sets the prefix.
-router.post("/upload", upload.single("file"), (req, res) => {
-    // Your upload controller logic...
-});
-
-module.exports = router;
-
-
-// Multer Storage Configuration
+// 2. Multer Storage Configuration
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
     cb(null, uploadsDir);
@@ -38,26 +25,27 @@ const storage = multer.diskStorage({
   },
 });
 
-// File upload limits (optional but recommended: e.g., 50MB)
+// 3. Initialize Upload Middleware (Must be defined BEFORE your routes run)
 const upload = multer({ 
   storage,
-  limits: { fileSize: 50 * 1024 * 1024 } 
+  limits: { fileSize: 50 * 1024 * 1024 } // 50MB file limit
 });
 
-// File Upload Route
+// 4. File Upload Route
+// Route maps directly to: POST /api/upload (due to the prefix in server.js)
 router.post("/upload", upload.single("file"), async (req, res) => {
   try {
     if (!req.file) {
       return res.status(400).json({ success: false, error: "No file uploaded" });
     }
 
-    // Generate accurate paths and URLs
+    // Generate accurate download URLs for production or development
     const fileUrl = `${req.protocol}://${req.get("host")}/files/${req.file.filename}`;
     
     // Generate QR code data URL
     const qrCodeUrl = await QRCode.toDataURL(fileUrl);
     
-    // Save record to MongoDB
+    // Save record tracking details to MongoDB
     const newFile = new File({
       filename: req.file.filename,
       fileUrl,
