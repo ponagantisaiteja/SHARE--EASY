@@ -3,7 +3,7 @@ const multer = require("multer");
 const path = require("path");
 const QRCode = require("qrcode");
 const fs = require("fs");
-const File = require("../models/file"); // Adjusted to match lowercase filename 'file.js'
+const File = require("../models/File"); // Adjusted to match lowercase filename 'file.js'
 
 const router = express.Router();
 
