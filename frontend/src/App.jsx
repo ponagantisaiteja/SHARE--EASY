@@ -54,7 +54,7 @@ function App() {
 // http://localhost:5000/api/upload
     try {
       // Points cleanly to your backend server port 5000
-      const response = await fetch("https://shareeasy-backend-zg8w.onrender.com", {
+      const response = await fetch("http://localhost:5000/api/upload", {
         method: "POST",
         body: formData,
       });

@@ -1,6 +1,7 @@
 {
   "name": "filesharing",
   "version": "1.0.0",
+  "type": "module",
   "description": "ShareEasy Backend Service",
   "main": "server.js",
   "scripts": {
